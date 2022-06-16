@@ -20,4 +20,12 @@ public class PlayerInput : MonoBehaviour
         //retorna verdadeiro enquanto estiver apertando o espaço
         return Input.GetKey(KeyCode.Space);
     }
+    public bool IsCrouchButtonDown()
+    {
+        return Input.GetKeyDown(KeyCode.S);
+    }
+    public bool IsCrouchButtonUp()
+    {
+        return Input.GetKeyUp(KeyCode.S);
+    }
 }

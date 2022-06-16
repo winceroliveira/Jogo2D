@@ -4731,6 +4731,7 @@ GameObject:
   - component: {fileID: 1466579181}
   - component: {fileID: 1466579178}
   - component: {fileID: 1466579182}
+  - component: {fileID: 1466579183}
   m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
@@ -4771,7 +4772,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 572b83782f104ee418c4cc9bccf1b44a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  groundMaxSpeed: 4
+  groundMaxSpeed: 2
   groundAcceleration: 100
   maxJumpHeight: 4
   jumpPeakTime: 0.4
@@ -4873,5 +4874,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c66b3a31353a3db4baab7df6b2e52777, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  crouchedSprit: {fileID: 21300000, guid: bd35fa3b066b8a849bca1c29918e2796, type: 3}
+  idleSprit: {fileID: 21300000, guid: df72d97bae32378418e06baa2e1be3ef, type: 3}
+--- !u!114 &1466579183
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1466579176}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c9d5cc04db51ce4885b981a978bb467, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

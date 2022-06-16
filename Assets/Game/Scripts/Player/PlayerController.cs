@@ -11,6 +11,9 @@ public class PlayerController : MonoBehaviour
     CharacterMovement2D playerMovement;
     SpriteRenderer spriteRenderer;
     PlayerInput playerInput;
+
+    public Sprite crouchedSprit;
+    public Sprite idleSprit;
     // Start is called before the first frame update
     void Start()
     {
@@ -43,6 +46,23 @@ public class PlayerController : MonoBehaviour
         if (playerInput.IsJumpButtonHeld() == false)
         {
             playerMovement.UpdateJumpAbort();
+        }
+
+        //AGACHAR
+        if (playerInput.IsCrouchButtonDown())
+        {
+            playerMovement.Crouch();
+
+            //TODO: Remover quando adicionar animação
+            spriteRenderer.sprite = crouchedSprit;
+        }
+        //LEVANTAR
+        else if (playerInput.IsCrouchButtonUp())
+        {
+
+            playerMovement.UnCrouch();
+            //TODO: Remover quando adicionar animação
+            spriteRenderer.sprite = idleSprit;
         }
     }
 }
