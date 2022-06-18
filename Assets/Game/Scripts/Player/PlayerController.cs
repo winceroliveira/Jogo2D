@@ -4,13 +4,11 @@ using UnityEngine;
 using Platformer2D.Character;
 
 [RequireComponent(typeof(CharacterMovement2D))]
-[RequireComponent(typeof(SpriteRenderer))]
 [RequireComponent(typeof(PlayerInput))]
 [RequireComponent(typeof(CharacterFacing2D))]
 public class PlayerController : MonoBehaviour
 {
     CharacterMovement2D playerMovement;
-    SpriteRenderer spriteRenderer;
     CharacterFacing2D characterFacing2D;
     PlayerInput playerInput;
 
@@ -27,7 +25,6 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         playerMovement = GetComponent<CharacterMovement2D>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
         playerInput = GetComponent<PlayerInput>();
         characterFacing2D = GetComponent<CharacterFacing2D>();
     }
@@ -64,7 +61,7 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         //controle do target da camera dependendo da direção do sprite e da velocidade do jogador
-        bool isFacingRight = spriteRenderer.flipX == false;
+        bool isFacingRight = characterFacing2D.IsFacingRight();
         float targetOffsetX = isFacingRight ? cameraTargetOffsetX : -cameraTargetOffsetX;
         float currentOffsetX = Mathf.Lerp(cameraTarget.localPosition.x, targetOffsetX, Time.fixedDeltaTime * cameraTargetFlipSpeed);
         currentOffsetX += playerMovement.CurrentVelocity.x * Time.fixedDeltaTime * characterSpeedInfluence;

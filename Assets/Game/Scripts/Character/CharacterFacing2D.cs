@@ -30,4 +30,8 @@ public class CharacterFacing2D : MonoBehaviour
             spriteRenderer.flipX = true;
         }
     }
+    public bool IsFacingRight()
+    {
+        return spriteRenderer.flipX == false;
+    }
 }

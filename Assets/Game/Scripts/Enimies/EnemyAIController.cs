@@ -4,32 +4,22 @@ using UnityEngine;
 using Platformer2D.Character;
 
 [RequireComponent(typeof(CharacterMovement2D))]
+[RequireComponent(typeof(CharacterFacing2D))]
 public class EnemyAIController : MonoBehaviour
 {
 
     CharacterMovement2D enemyMovement;
-    Vector2 movementInput;
+    CharacterFacing2D enemyFacing2D;
+    public Vector2 movementInput;
+    public bool isChasing;
     private void Start()
     {
         enemyMovement = GetComponent<CharacterMovement2D>();
-        StartCoroutine("Temp_Walk");
+        enemyFacing2D = GetComponent<CharacterFacing2D>();
     }
     private void Update()
     {
         enemyMovement.ProcessMovementInput(movementInput);
-    }
-    IEnumerator Temp_Walk()
-    {
-        while (true)
-        {
-            movementInput.x = 1;
-            yield return new WaitForSeconds(1.0f);
-            movementInput.x = 0;
-            yield return new WaitForSeconds(2.0f);
-            movementInput.x = -1;
-            yield return new WaitForSeconds(1.0f);
-            movementInput.x = 0;
-            yield return new WaitForSeconds(2.0f);
-        }
+        enemyFacing2D.UpdateFacing(movementInput);
     }
 }
