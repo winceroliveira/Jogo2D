@@ -6,10 +6,12 @@ using Platformer2D.Character;
 [RequireComponent(typeof(CharacterMovement2D))]
 [RequireComponent(typeof(SpriteRenderer))]
 [RequireComponent(typeof(PlayerInput))]
+[RequireComponent(typeof(CharacterFacing2D))]
 public class PlayerController : MonoBehaviour
 {
     CharacterMovement2D playerMovement;
     SpriteRenderer spriteRenderer;
+    CharacterFacing2D characterFacing2D;
     PlayerInput playerInput;
 
     [Header ("Camera")]
@@ -27,6 +29,7 @@ public class PlayerController : MonoBehaviour
         playerMovement = GetComponent<CharacterMovement2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         playerInput = GetComponent<PlayerInput>();
+        characterFacing2D = GetComponent<CharacterFacing2D>();
     }
 
     // Update is called once per frame
@@ -35,16 +38,7 @@ public class PlayerController : MonoBehaviour
         //Movimentação
         Vector2 movimentInput = playerInput.GetMovementInput();
         playerMovement.ProcessMovementInput(movimentInput);
-
-        if (movimentInput.x > 0)
-        {
-            spriteRenderer.flipX = false;
-        }
-        else if (movimentInput.x < 0)
-        {
-            spriteRenderer.flipX = true;
-        }
-
+        characterFacing2D.UpdateFacing(movimentInput);
         //Pulo
         if (playerInput.IsJumpButtonDown())
         {
@@ -76,4 +70,6 @@ public class PlayerController : MonoBehaviour
         currentOffsetX += playerMovement.CurrentVelocity.x * Time.fixedDeltaTime * characterSpeedInfluence;
         cameraTarget.localPosition = new Vector3(currentOffsetX, cameraTarget.localPosition.y, cameraTarget.localPosition.z);
     }
+
+    
 }
